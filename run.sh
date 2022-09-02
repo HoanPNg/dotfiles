@@ -1,5 +1,9 @@
 log_file=~/install_progress_log.txt
 
+# fix time
+timedatectl set-local-rtc 1
+echo "Time fixed" >> $log_file
+
 # zsh
 sudo apt install zsh
 if type -p zsh > /dev/null; then
@@ -10,6 +14,11 @@ fi
 
 # Oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+echo "Oh-my-zsh Installed" >> $log_file
+
+# p10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+echo "p10k Installed" >> $log_file
 
 # nvim 
 wget https://github.com/neovim/neovim/releases/download/v0.7.2/nvim-linux64.deb
@@ -42,6 +51,40 @@ sudo apt-get update
 sudo apt-get install ibus ibus-bamboo --install-recommends
 echo "ibus installed" >> $log_file
 
+# kitty terminal
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+mkdir ~/.local/bin
+ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/
+cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
+cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
+sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
+sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
+echo "Kitty_ter Installed" >> $log_file
+
+# update GIT
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt update
+sudo apt upgrade
+echo "Git Updated" >> $log_file
+
+# nodejs
+curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
+sudo apt-get install -y nodejs
+echo "Nodejs Install" >> $log_file
+
+# pip3
+curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
+sudo apt-get install -y nodejs
+echo "pip3 installed" >> $log_file
+
+# nvim extend
+pip3 install pynvim
+sudo npm i -g neovim
+sudo apt install xsel
+
+# exa (ls extend)
+sudo apt install exa
+echo "exa Installed" >> $log_file
 #==============
 # Give the user a summary of what has been installed
 #==============
@@ -50,3 +93,4 @@ cat $log_file
 echo
 echo "Enjoy -Jarrod"
 rm $log_file
+rm *.deb
