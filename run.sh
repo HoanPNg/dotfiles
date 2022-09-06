@@ -1,3 +1,4 @@
+#!/bin/bash
 log_file=~/install_progress_log.txt
 
 # fix time
@@ -85,6 +86,8 @@ sudo apt install xsel
 # exa (ls extend)
 sudo apt install exa
 echo "exa Installed" >> $log_file
+
+
 #==============
 # Give the user a summary of what has been installed
 #==============

@@ -11,6 +11,7 @@
 #==============
 dotfiles_dir=~/dotfiles
 log_file=~/install_progress_log.txt
+touch install_progress_log.txt
 
 #==============
 # Delete existing dot files and folders
@@ -44,6 +45,7 @@ ln -sf $dotfiles_dir/config/kitty ~/.config/kitty
 # ln -sf $dotfiles_dir/custom-configs/custom-snips ~/.vim/custom-snips
 ln -sf $dotfiles_dir/zsh/p10k.zsh ~/.p10k.zsh
 ln -sf $dotfiles_dir/fonts ~/.fonts
+ln -sf $dotfiles_dir/nvchad/custom ~/.config/nvim/lua/custom
 
 
 # if [ -n "$(find $dotfiles_dir/custom-configs -name gitconfig)" ]; then
@@ -81,5 +83,4 @@ sudo chsh -s /bin/zsh
 echo -e "\n====== Summary ======\n"
 cat $log_file
 echo
-echo "Enjoy -Jarrod"
 rm $log_file
