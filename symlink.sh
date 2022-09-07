@@ -46,7 +46,7 @@ ln -sf $dotfiles_dir/config/kitty ~/.config/kitty
 ln -sf $dotfiles_dir/zsh/p10k.zsh ~/.p10k.zsh
 ln -sf $dotfiles_dir/fonts ~/.fonts
 ln -sf $dotfiles_dir/nvchad/custom ~/.config/nvim/lua/custom
-
+ln -sf $dotfiles_dir/config/ranger ~/.config/ranger
 
 # if [ -n "$(find $dotfiles_dir/custom-configs -name gitconfig)" ]; then
 #     ln -s $dotfiles_dir/custom-configs/**/gitconfig ~/.gitconfig

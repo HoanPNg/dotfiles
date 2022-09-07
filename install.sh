@@ -87,7 +87,14 @@ sudo apt install xsel
 sudo apt install exa
 echo "exa Installed" >> $log_file
 
+# ranger
+pip3 install ranger-fm
+echo "ranger installed" >> $log_file
 
+# python pillow lib (for image viewer)
+python3 -m pip install --upgrade pip
+python3 -m pip install --upgrade Pillow
+echo "pillow lib installed" >> $log_file
 #==============
 # Give the user a summary of what has been installed
 #==============
