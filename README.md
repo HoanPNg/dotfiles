@@ -11,6 +11,8 @@
 7. nodejs
 8. pip3
 9. exa (ls extend)
+10. ranger 
+11. python pillow lib
 
 # How to install
 1. install.sh
