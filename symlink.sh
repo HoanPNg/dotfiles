@@ -11,7 +11,6 @@
 #==============
 dotfiles_dir=~/dotfiles
 log_file=~/install_progress_log.txt
-touch install_progress_log.txt
 
 #==============
 # Delete existing dot files and folders
@@ -30,7 +29,10 @@ sudo rm -rf ~/.zshrc > /dev/null 2>&1
 # sudo rm -rf ~/.tigrc > /dev/null 2>&1
 # sudo rm -rf ~/.config > /dev/null 2>&1
 sudo rm -rf ~/.p10k.zsh > /dev/null 2>&1
+sudo rm -rf ~/.config/kitty > /dev/null 2>&1
+sudo rm -rf ~/.config/ranger > /dev/null 2>&1
 
+echo "Deleted old file" >> $log_file
 #==============
 # Create symlinks in the home folder
 # Allow overriding with files of matching names in the custom-configs dir
@@ -72,6 +74,7 @@ ln -sf $dotfiles_dir/config/ranger ~/.config/ranger
 #     ln -s $dotfiles_dir/psqlrc ~/.psqlrc
 # fi
 
+echo "Symlink created" >> $log_file
 #==============
 # Set zsh as the default shell
 #==============
