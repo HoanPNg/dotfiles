@@ -19,9 +19,13 @@ echo "Oh-my-zsh Installed" >> $log_file
 
 # p10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-echo "p10k Installed" >> $log_file
+if type -p p10k > /dev/null; then
+  echo "p10k Installed" >> $log_file
+else
+  echo "p10k FAILED TO INSTALL" >> $log_file
+fi
 
-# nvim 
+#nvim 
 wget https://github.com/neovim/neovim/releases/download/v0.7.2/nvim-linux64.deb
 sudo apt install ./nvim-linux64.deb
 if type -p nvim > /dev/null; then
@@ -60,7 +64,12 @@ cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applicatio
 cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
 sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
 sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
-echo "Kitty_ter Installed" >> $log_file
+
+if type -p kitty > /dev/null; then
+  echo "Kitty_ter Installed" >> $log_file
+else
+  echo "Kitty_ter FAILED TO INSTALL" >> $log_file
+fi
 
 # update GIT
 sudo add-apt-repository ppa:git-core/ppa
@@ -74,9 +83,12 @@ sudo apt-get install -y nodejs
 echo "Nodejs Install" >> $log_file
 
 # pip3
-curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
-sudo apt-get install -y nodejs
-echo "pip3 installed" >> $log_file
+sudo apt-get -y install python3-pip
+if type -p pip3 > /dev/null; then
+  echo "pip3 Installed" >> $log_file
+else
+  echo "pip3 FAILED TO INSTALL" >> $log_file
+fi
 
 # nvim extend
 pip3 install pynvim
@@ -85,16 +97,28 @@ sudo apt install xsel
 
 # exa (ls extend)
 sudo apt install exa
-echo "exa Installed" >> $log_file
+if type -p exa > /dev/null; then
+  echo "exa Installed" >> $log_file
+else
+  echo "exa FAILED TO INSTALL" >> $log_file
+fi
 
 # ranger
 pip3 install ranger-fm
-echo "ranger installed" >> $log_file
+if type -p ranger > /dev/null; then
+  echo "ranger Installed" >> $log_file
+else
+  echo "ranger FAILED TO INSTALL" >> $log_file
+fi
 
 # python pillow lib (for image viewer)
 python3 -m pip install --upgrade pip
 python3 -m pip install --upgrade Pillow
 echo "pillow lib installed" >> $log_file
+
+# python3.10-venv 
+sudo apt install python3.10-venv
+
 #==============
 # Give the user a summary of what has been installed
 #==============

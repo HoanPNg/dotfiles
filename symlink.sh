@@ -81,6 +81,11 @@ echo "Symlink created" >> $log_file
 sudo chsh -s /bin/zsh
 
 #==============
+# Copy folders
+#==============
+cp -rf $dotfiles_dir/Wallpaper ~/Pictures
+
+#==============
 # Give the user a summary of what has been installed
 #==============
 echo -e "\n====== Summary ======\n"
